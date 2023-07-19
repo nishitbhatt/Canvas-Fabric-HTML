@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabric JS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <main id="canvas-app">
+
+        <div class="app-wrapper">
+            <div class="canvas-wrapper">
+                <canvas id="canvas" class="canvas-board" height="850" width="1000"></canvas>
+            </div>
+
+
+            <div class="option-panel">
+
+
+                <div class="tab">
+                    <button id="postionTab" class="tablinks"
+                        onclick="openTab(event, 'position')">Position/Rotation</button>
+                    <button id="fontsTab" class="tablinks" onclick="openTab(event, 'fonts')">Font Setting</button>
+                    <button id="shadowTab" class="tablinks" onclick="openTab(event, 'shadow')">Shape/Shadow</button>
+                </div>
+
+                <br>
+                <br>
+
+                <div id="position" class="tabcontent">
+
+                    <fieldset>
+                        <legend><b>Position/Rotation:</b></legend>
+                        <br>
+                        <label>Position - X :</label><br>
+
+                        <input id="numXPosition" type="number" placeholder="X"><br><br>
+
+                        <label>Position - Y :</label><br>
+
+                        <input id="numYPosition" type="number" placeholder="Y">
+                        <br />
+                        <br />
+                        <hr />
+                        <br />
+                        <label>Rotate - :</label><br>
+
+                        <input id="numRotation" type="number" placeholder="Rotate" min="0" max="360"><br>
+
+                        <input id="rngRotation" type="range" min="0" max="360">
+
+                    </fieldset>
+
+                </div>
+
+                <div id="fonts" class="tabcontent">
+                    <fieldset>
+                        <legend><b>Font Settings:</b></legend>
+                        <br>
+                        <label>Font :</label><br>
+
+                        <select name="" id="txtFontfamily">
+                            <option value="initial">Initial</option>
+                            <option value="cursive">cursive</option>
+                            <option value="fantasy">fantasy</option>
+                            <option value="math">math</option>
+                            <option value="monospace">monospace</option>
+                            <option value="system-ui">system-ui</option>
+                        </select>
+
+
+                        <br><br>
+
+                        <label>Size :</label><br>
+
+                        <input id="numSize" type="number" placeholder="Size"><br><br>
+
+                        <label>Text Color :</label><br>
+
+                        <input id="numTextColor" type="color" placeholder="Color"><br><br>
+
+                        <fieldset>
+                            <legend><b>Text Gradients :</b></legend><br>
+
+                            <input id="rdoLinear" type="radio" value="linear" class="rdoGradiant" name="rdoGradiant" />
+                            <label for="rdoLinear">Linear</label>
+
+                            <input id="rdoRadial" type="radio" value="radial" class="rdoGradiant" name="rdoGradiant" />
+                            <label for="rdoRadial">Radial</label><br><br>
+
+                            <b>Spread</b>
+                            <hr />
+
+                            <div class="gradiant-holder">
+
+                                <input id="clrGradiantLeftColor" type="color" placeholder="Color">
+                                <input type="number" id="numLeftSpread" placeholder="Spread" />
+                                <br><br>
+
+                                <input id="clrGradiantRighttColor" type="color" placeholder="Color">
+                                <input type="number" id="numRightSpread" placeholder="Spread" />
+                                <br><br>
+                            </div>
+
+                        </fieldset><br><br>
+
+
+                        <label>Background Color :</label><br>
+
+                        <input id="numBGColor" type="color" placeholder="Color"> |
+                        <button id="noBGColorBtn">No color</button><br><br>
+                        <hr>
+                        <!-- <label>Text Gradients  :</label><br>
+    
+                        <input type="color" placeholder="Color"><br><br> -->
+
+
+                        <fieldset>
+
+                            <legend><b>Style :</b></legend>
+                            <br>
+
+                            <div>
+                                <input id="chkStyleBold" type="checkbox" class="chkStyleEle" data-prop="fontWeight"
+                                    name="chkStyles" />
+                                <label for="chkStyleBold">BOLD</label>
+
+                                <br />
+                                <input id="chkStyleItalic" type="checkbox" class="chkStyleEle" data-prop="fontStyle"
+                                    name="chkStyles" />
+                                <label for="chkStyleItalic">Italic</label>
+
+                                <br />
+                                <input id="chkStyleUnderline" type="checkbox" class="chkStyleEle" data-prop="underline"
+                                    name="chkStyles" />
+                                <label for="chkStyleUnderline">Underline</label>
+
+                                <br />
+                                <input id="chkStyleStrikeThrough" type="checkbox" class="chkStyleEle"
+                                    data-prop="linethrough" name="chkStyles" />
+                                <label for="chkStyleStrikeThrough">Strike-through</label>
+
+                                <br />
+                                <input id="chkStyleOverline" type="checkbox" class="chkStyleEle" data-prop="overline"
+                                    name="chkStyles" />
+                                <label for="chkStyleOverline">Overline</label>
+
+                            </div>
+                        </fieldset>
+
+                        <br>
+
+                        <fieldset>
+
+                            <legend><b>Alignment :</b></legend>
+                            <br>
+
+                            <div>
+                                <input id="txtAlignLEFT" value="left" class="tdoTextAlignment" type="radio"
+                                    name="rdoAlign" />
+                                <label for="txtAlignLEFT">LEFT</label>
+
+                                <br />
+                                <input id="txtAlignRIGHT" value="right" class="tdoTextAlignment" type="radio"
+                                    name="rdoAlign" />
+                                <label for="txtAlignRIGHT">RIGHT</label>
+
+                                <br />
+                                <input id="txtAlignCENTER" value="center" class="tdoTextAlignment" type="radio"
+                                    name="rdoAlign" />
+                                <label for="txtAlignCENTER">CENTER</label>
+
+                                <br />
+                                <input id="txtAlignJUSTIFY" value="justify" class="tdoTextAlignment" type="radio"
+                                    name="rdoAlign" />
+                                <label for="txtAlignJUSTIFY">JUSTIFY</label>
+
+
+                            </div>
+                        </fieldset>
+
+                        <br>
+
+                        <label>Opacity :</label><br>
+
+                        <input id="numOpacity" min="0" max="100" value="100" type="number" placeholder="Size"><br><br>
+
+                        <label>Spacing :</label><br>
+
+                        <input id="numSpacing" min="0" max="100" type="number" placeholder="Size"><br><br>
+
+                        <label>Line Height :</label><br>
+
+                        <input id="numLineHeight" type="number" placeholder="Size"><br><br>
+
+                        <label>Stroke :</label><br>
+
+                        <input id="numStroke" type="number" placeholder="Size"><br><br>
+
+                        <label>Stroke Color :</label><br>
+
+                        <input id="numStrokeColor" type="color" placeholder="Color"><br><br>
+
+
+
+
+                    </fieldset>
+                </div>
+
+                <div id="shadow" class="tabcontent">
+
+                    <fieldset>
+
+                        <legend><b>Shadow :</b></legend>
+                        <br>
+
+                        <div>
+                            <input id="rdNoShadow" type="radio" class="rdShadow" value="no_shadow" name="rdNoShadow"
+                                checked />
+                            <label for="rdNoShadow">No shadow</label><br><br>
+
+                            <input id="rdAddShadow" type="radio" class="rdShadow" value="add_shadow"
+                                name="rdNoShadow" />
+                            <label for="rdAddShadow">Add shadow</label><br><br>
+
+
+                            <div id="shadow-holder" class="hide">
+
+
+
+                                <label>Shadow Color:</label><br>
+
+                                <input id="shadowColor" value="#bf4545" type="color"><br><br>
+
+                                <label>Shadow Blur:</label><br>
+
+                                <input id="shadowBlur" type="number" min="0" max="100" value="0"
+                                    placeholder="Y offset"><br><br>
+
+
+                                <label>X Offset:</label><br>
+
+                                <input id="shadowXOffset" type="number" min="-50" max="50" value="0"
+                                    placeholder="X offset"><br><br>
+
+                                <label>Y Offset:</label><br>
+
+                                <input id="shadowYOffset" type="number" min="-50" max="50" value="0"
+                                    placeholder="Y offset"><br><br>
+                            </div>
+
+
+
+                        </div>
+                    </fieldset><br><br>
+                    <fieldset>
+
+                        <legend><b>Curved Text :</b></legend>
+                        <br>
+                        
+                            <input id="chkCurvedText" type="checkbox" />
+                            <label for="chkCurvedText">Curve Text</label><br><br>
+                            
+                            <label for="numDiameter">Diameter :</label><br>
+                            <input id="numDiameter" type="number" min="0" max="100" value="50" /><br><br>
+
+                            <input id="chkFlipText" type="checkbox" />
+                            <label for="chkFlipText">Flip Text</label><br><br>
+                            
+                    </fieldset>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+
+    <script>
+
+        // TAB
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Open First Tab 
+        document.getElementById('shadowTab')?.click();
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
